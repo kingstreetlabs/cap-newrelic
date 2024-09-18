@@ -19,7 +19,7 @@ namespace :newrelic do
         fail ":new_relic_api_key must be set - \"set :new_relic_api_key, 'yourkey'\"" unless new_relic_api_key
         response = Faraday.post do |req|
           req.url fetch(:new_relic_url)
-          req.headers['x-api-key'] = new_relic_api_key
+          req.headers['api-key'] = new_relic_api_key
           req.body = deployment
         end
         if response.headers['status'] =~ /201/
