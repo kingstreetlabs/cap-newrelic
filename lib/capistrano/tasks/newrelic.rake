@@ -56,7 +56,7 @@ namespace :load do
   task :defaults do
     set :new_relic_api_key, nil
     set :new_relic_app_name, fetch(:application)
-    set :new_relic_url, 'https://api.newrelic.com/deployments.xml'
+    set :new_relic_url, 'https://api.newrelic.com/v2/applications/13315536/deployments.json'
     set :new_relic_enabled, true
   end
 end
