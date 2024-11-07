@@ -8,7 +8,6 @@ namespace :newrelic do
         changelog = fetch(:changelog)
         deployment = {
           :deployment => {
-            :app_name => fetch(:new_relic_app_name),
             :description => "Deploy #{fetch(:application)}/#{fetch(:branch)} to #{fetch(:stage)}",
             :user => local_user,
             :revision => current_rev,
