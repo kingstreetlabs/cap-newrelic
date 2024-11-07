@@ -19,7 +19,7 @@ namespace :newrelic do
         response = Faraday.post do |req|
           req.url fetch(:new_relic_url)
           info "New Relic API Key being set: #{new_relic_api_key}"
-          req.headers['api-key'] = new_relic_api_key
+          req.headers['x-api-key'] = new_relic_api_key
           req.body = deployment
         end
         if response.headers['status'] =~ /201/
