@@ -18,6 +18,7 @@ namespace :newrelic do
         fail ":new_relic_api_key must be set - \"set :new_relic_api_key, 'yourkey'\"" unless new_relic_api_key
         response = Faraday.post do |req|
           req.url fetch(:new_relic_url)
+          info "[New Relic] post request data:"
           info "New Relic URL being set: #{fetch(:new_relic_url)}"
           info "New Relic API Key being set: #{new_relic_api_key}"
           info "New Relic Body being set: #{deployment}"
