@@ -1,14 +1,13 @@
 namespace :newrelic do
   desc 'Notify New Relic of deployment'
   task :notify do
-    if fetch(:new_relic_enabled) and fetch(:new_relic_app_name)
+    if fetch(:new_relic_enabled)
       run_locally do
         local_user = capture('git config user.name').strip
         current_rev = fetch(:current_revision)
         changelog = fetch(:changelog)
         deployment = {
           :deployment => {
-            :app_name => fetch(:new_relic_app_name),
             :description => "Deploy #{fetch(:application)}/#{fetch(:branch)} to #{fetch(:stage)}",
             :user => local_user,
             :revision => current_rev,
@@ -54,7 +53,6 @@ end
 namespace :load do
   task :defaults do
     set :new_relic_api_key, nil
-    set :new_relic_app_name, fetch(:application)
     set :new_relic_url, nil
     set :new_relic_enabled, true
   end
