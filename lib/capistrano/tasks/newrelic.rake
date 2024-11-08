@@ -18,7 +18,7 @@ namespace :newrelic do
         new_relic_api_key = fetch(:new_relic_api_key) || ENV['NEW_RELIC_API_KEY']
         fail ":new_relic_api_key must be set - \"set :new_relic_api_key, 'yourkey'\"" unless new_relic_api_key
         response = Faraday.post do |req|
-          req.url fetch(:new_relic_url)
+          req.url fetch(:new_relic_url) || "https://api.newrelic.com/v2/applications/#{ENV['NEW_RELIC_APP_ID']}/deployments.json"
           req.headers['x-api-key'] = new_relic_api_key
           req.body = deployment
         end
@@ -55,7 +55,7 @@ namespace :load do
   task :defaults do
     set :new_relic_api_key, nil
     set :new_relic_app_name, fetch(:application)
-    set :new_relic_url, 'https://api.newrelic.com/deployments.xml'
+    set :new_relic_url, nil
     set :new_relic_enabled, true
   end
 end
