@@ -38,12 +38,11 @@ Configurable options, shown here with defaults:
 
 ```ruby
 set :new_relic_api_key, nil
-set :new_relic_app_name, fetch(:application)
-set :new_relic_url, 'https://api.newrelic.com/deployments.xml'
+set :new_relic_url, nil
 ```
 
-Both `new_relic_api_key` and `new_relic_app_name` are required.
-If not present `new_relic_api_key` will in `ENV['NEW_RELIC_API_KEY']`, `new_relic_app_name` will use the Capistrano application's name.
+`new_relic_api_key` is required.
+If not present `new_relic_api_key` will in `ENV['NEW_RELIC_API_KEY']`.
 
 ## Contributing
 
